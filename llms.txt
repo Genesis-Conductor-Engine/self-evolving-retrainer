@@ -1,0 +1,20 @@
+# Self-Evolving Retrainer — Prompt Optimization
+
+> Shadow-gated prompt optimization system for Genesis Conductor.
+> Part of the Ambient Access Layer infrastructure.
+
+## Features
+- Automated prompt optimization
+- Shadow-gated testing
+- Ralph micro-optimization slices
+- Continuous improvement loop
+
+## Integration
+- Core component of Genesis Conductor
+- Powers Ambient Access Layer routing
+- A2A protocol compliant
+
+## Creator
+Igor Holt — AI Architect
+Genesis Conductor Engine
+https://genesisconductor.io
