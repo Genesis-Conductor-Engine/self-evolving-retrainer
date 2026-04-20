@@ -1,0 +1,26 @@
+# self-evolving-retrainer — Shadow-Gated Prompt Optimization
+
+> A Cloudflare Worker that implements Ralph-style micro-optimization slices,
+> Pareto front promotion queues, and shadow-gated blended scoring for
+> continuous prompt improvement without regression.
+
+## Overview
+- [README](https://github.com/Genesis-Conductor-Engine/self-evolving-retrainer#readme)
+- [Architecture](https://github.com/Genesis-Conductor-Engine/self-evolving-retrainer/blob/main/docs/ARCHITECTURE.md)
+
+## Key Concepts
+- **Ralph micro-slices**: Small, isolated prompt variations tested in shadow mode
+- **Pareto front**: Multi-objective optimization balancing accuracy, latency, and cost
+- **Shadow-gated scoring**: A/B testing without user-facing impact
+- **Queue-safe promotion**: Atomic promotion of winning variants
+
+## API
+- POST /optimize: Submit a prompt for optimization
+- GET /variants/:id: Retrieve variant performance metrics
+- POST /promote: Promote a winning variant to production
+
+## Stack
+- Cloudflare Workers (runtime)
+- D1 (SQLite for variant storage)
+- KV (fast reads for active variants)
+- Queues (async evaluation pipeline)
