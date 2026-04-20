@@ -1,0 +1,17 @@
+{
+  "name": "self-evolving-retrainer-v3",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "smoke": "node scripts/local-smoke.mjs",
+    "provision:check": "node scripts/provision-and-check.mjs",
+    "bootstrap:ledger": "node scripts/bootstrap_ledger.mjs",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  }
+}

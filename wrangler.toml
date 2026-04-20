@@ -1,0 +1,59 @@
+name = "self-evolving-retrainer"
+main = "src/index.mjs"
+compatibility_date = "2026-04-18"
+compatibility_flags = ["nodejs_compat"]
+
+[observability]
+enabled = true
+
+[triggers]
+crons = ["*/5 * * * *", "0 * * * *", "*/30 * * * *"]
+
+[vars]
+APP_NAME = "self-evolving-retrainer"
+DEFAULT_MODEL = "gpt-5.4-mini"
+JUDGE_MODEL = "gpt-5.4-nano"
+HOURLY_USD_BUDGET = "5.00"
+DAILY_USD_BUDGET = "50.00"
+RALPH_MAX_ITERATIONS_PER_SLICE = "4"
+RALPH_ITER_BUDGET_TOKENS = "8000"
+RALPH_ITER_BUDGET_SECONDS = "45"
+RALPH_EPSILON = "0.002"
+PROMOTION_MIN_DELTA = "0.015"
+WATCHDOG_FAILURE_THRESHOLD = "3"
+SHADOW_ONCHAIN_WEIGHTS = "true"
+
+[[d1_databases]]
+binding = "RETRAINER_DB"
+database_name = "self-evolving-retrainer"
+database_id = "REPLACE_ME"
+
+[[kv_namespaces]]
+binding = "CHECKPOINT_KV"
+id = "REPLACE_ME"
+
+[[queues.producers]]
+binding = "RALPH_SLICE_QUEUE"
+queue = "self-evolving-retrainer-ralph-slices"
+
+[[queues.producers]]
+binding = "PROMOTION_EVAL_QUEUE"
+queue = "self-evolving-retrainer-promotion-eval"
+
+[[queues.consumers]]
+queue = "self-evolving-retrainer-ralph-slices"
+max_batch_size = 5
+max_batch_timeout = 10
+max_retries = 5
+dead_letter_queue = "self-evolving-retrainer-dlq"
+max_concurrency = 1
+retry_delay = 60
+
+[[queues.consumers]]
+queue = "self-evolving-retrainer-promotion-eval"
+max_batch_size = 5
+max_batch_timeout = 10
+max_retries = 5
+dead_letter_queue = "self-evolving-retrainer-dlq"
+max_concurrency = 1
+retry_delay = 60
